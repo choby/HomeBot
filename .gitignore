@@ -5,3 +5,6 @@
 /HomeBot.Web/bin/Debug/netcoreapp2.1
 /HomeBot.Web/obj
 /HomeBot.Web/Properties
+/HomeBot.Web/bin
+/HomeBot.Services/bin
+/HomeBot.Services/obj
