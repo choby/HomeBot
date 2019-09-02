@@ -1,0 +1,7 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/HomeBot.Web/bin/Debug/netcoreapp2.1
+/HomeBot.Web/obj
+/HomeBot.Web/Properties
