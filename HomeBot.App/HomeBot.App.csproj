@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeBot.Infrastructure\HomeBot.Infrastructure.csproj" />
+    <ProjectReference Include="..\HomeBot.Services\HomeBot.Services.csproj" />
+  </ItemGroup>
+
+</Project>
