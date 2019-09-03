@@ -2,9 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBot", "HomeBot.Web\HomeBot.csproj", "{352D19EF-79F6-4F6F-B958-C71F6966D19B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBot.Services", "HomeBot.Services\HomeBot.Services.csproj", "{72C4CF95-CF80-4BC3-98F1-26E3D82D130D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBot.App", "HomeBot.App\HomeBot.App.csproj", "{6600CE7D-D0DD-475A-AA17-B0201F6E2BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBot.Infrastructure", "HomeBot.Infrastructure\HomeBot.Infrastructure.csproj", "{D4805F86-1AD0-4656-AF4C-99430C308C6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,14 +14,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{352D19EF-79F6-4F6F-B958-C71F6966D19B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{352D19EF-79F6-4F6F-B958-C71F6966D19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{352D19EF-79F6-4F6F-B958-C71F6966D19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{352D19EF-79F6-4F6F-B958-C71F6966D19B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72C4CF95-CF80-4BC3-98F1-26E3D82D130D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72C4CF95-CF80-4BC3-98F1-26E3D82D130D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72C4CF95-CF80-4BC3-98F1-26E3D82D130D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72C4CF95-CF80-4BC3-98F1-26E3D82D130D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6600CE7D-D0DD-475A-AA17-B0201F6E2BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6600CE7D-D0DD-475A-AA17-B0201F6E2BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6600CE7D-D0DD-475A-AA17-B0201F6E2BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6600CE7D-D0DD-475A-AA17-B0201F6E2BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4805F86-1AD0-4656-AF4C-99430C308C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4805F86-1AD0-4656-AF4C-99430C308C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4805F86-1AD0-4656-AF4C-99430C308C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4805F86-1AD0-4656-AF4C-99430C308C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

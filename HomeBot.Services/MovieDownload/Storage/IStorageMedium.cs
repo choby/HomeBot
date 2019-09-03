@@ -6,6 +6,6 @@ namespace HomeBot.Services.MovieDownload.Storage
 {
     public interface IStorageMedium
     {
-        void Store(string magnet);
+        void StoreAsync(string magnet, Action callback);
     }
 }
