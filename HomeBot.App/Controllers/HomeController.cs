@@ -10,33 +10,31 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using HtmlAgilityPack;
-using HomeBot.Services.MovieDownload.Storage;
-using HomeBot.Services.MovieDownload;
+using HomeBot.Services.Movies.Storage;
+using HomeBot.Services.Movies;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.Design;
+using System.Collections.Specialized;
+using Quartz.Impl;
+using Quartz;
+using HomeBot.Services.Tasks.Movie;
+using Quartz.Spi;
 
 namespace HomeBot.Controllers
 {
     public class HomeController : Controller
     {
-
-        IMovieDownload _movieDownload;
-        HtmlWeb _webClient;
-        IStorageMedium _storageMedium;
-        public HomeController(IStorageMedium storageMedium, IMovieDownload movieDownload,
-            HtmlWeb webClient)
+        IServiceProvider _serviceProvider;
+        public HomeController(IServiceProvider serviceProvider)
         {
-            _storageMedium = storageMedium;
-            _movieDownload = movieDownload;
-            _webClient = webClient;
+            
+            _serviceProvider = serviceProvider;
         }
 
 
         public IActionResult Index()
         {
-
-            // this.downloadMagnet("magnet:?xt=urn:btih:7757f5c4d12b3fcc9a34552a3522cd5525032844&dn=Dark.Phoenix.2019.1080p.BluRay.x264-GECKOS&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2740&tr=udp%3A%2F%2F9.rarbg.to%3A2790");
-            //var magnet = getMagnet("http://gaoqing.la/cold-blood.html");
-            //_storageMedium.Store("xx");
-            _movieDownload.Excute();
+            MovieDownloadTask.Start(_serviceProvider);
             return View();
         }
 

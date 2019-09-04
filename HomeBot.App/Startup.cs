@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using HomeBot.Infrastructure.Db;
 using HomeBot.Infrastructure.Db.Entities;
 using HomeBot.Services.DbServices;
-using HomeBot.Services.MovieDownload;
-using HomeBot.Services.MovieDownload.Storage;
+using HomeBot.Services.Movies;
+using HomeBot.Services.Movies.Storage;
+using HomeBot.Services.Tasks.Movie;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quartz.Spi;
 using DbContext = HomeBot.Infrastructure.Db.DbContext;
 
 namespace HomeBot
@@ -40,13 +42,20 @@ namespace HomeBot
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             var connection = Configuration["sqlite"];
-            //services.AddHttpClient();
+            //services.AddHttpClient();//httpclient常遇到tcp连接池的问题，所以选择HtmlWeb组件和RestSharp组件代替
             services.AddSingleton<HtmlWeb, HtmlWeb>()
-                .AddDbContext<DbContext>(options=>options.UseSqlite(connection))
+                .AddDbContext<DbContext>(options => options.UseSqlite(connection))
+                //.AddTransient<DbContext>(serviceProvider=> {
+                //    var builder = new DbContextOptionsBuilder().UseSqlite(connection);
+                //    return new DbContext(builder.Options);
+                //})
                 .AddTransient(typeof(IRepository<>), typeof(Repository<>))
-                .AddTransient<IMovieDownload, GaoqingLa>()
-                .AddTransient<IStorageMedium, HomeNas>()
-                .AddTransient< IMovieDownloadService,MovieDownloadService>();
+                .AddTransient<IMovieSite, GaoqingLa>()
+                .AddSingleton<IStorageMedium, HomeNas>()
+                .AddTransient<IMovieDownloadService, MovieDownloadService>()
+                .AddTransient<MovieDownloadJob, MovieDownloadJob>()
+                .AddTransient<IMovieDownloadJobFactory, MovieDownloadJobFactory>()
+                ;
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -65,7 +74,7 @@ namespace HomeBot
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
             app.UseCookiePolicy();
             app.UseAuthorization();

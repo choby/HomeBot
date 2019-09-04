@@ -10,8 +10,8 @@ namespace HomeBot.Infrastructure.Db.Entities
     {
         public int Id { get; set; }
         public string DateTime { get; set; }
-        public string MovieTitle { get; set; }
-        public string MovieManget { get; set; }
-        public string MoviePage { get; set; }
+        public string Title { get; set; }
+        public string Manget { get; set; }
+        public string Page { get; set; }
     }
 }
