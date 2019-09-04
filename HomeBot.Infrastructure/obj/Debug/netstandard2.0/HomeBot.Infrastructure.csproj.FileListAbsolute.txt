@@ -1,0 +1,11 @@
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\bin\Debug\netstandard2.0\HomeBot.Infrastructure.deps.json
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\bin\Debug\netstandard2.0\HomeBot.Infrastructure.dll
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\bin\Debug\netstandard2.0\HomeBot.Infrastructure.pdb
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\bin\Debug\netstandard2.0\netstandard.dll
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\bin\Debug\netstandard2.0\netstandard.xml
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.csproj.CopyComplete
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.dll
+C:\Users\Administrator\source\repos\HomeBot\HomeBot.Infrastructure\obj\Debug\netstandard2.0\HomeBot.Infrastructure.pdb

@@ -27,7 +27,6 @@ namespace HomeBot.Controllers
         IServiceProvider _serviceProvider;
         public HomeController(IServiceProvider serviceProvider)
         {
-            
             _serviceProvider = serviceProvider;
         }
 

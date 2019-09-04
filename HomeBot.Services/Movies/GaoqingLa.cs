@@ -70,7 +70,7 @@ namespace HomeBot.Services.Movies
         private async Task DownloadAsync(string pageUrl)
         {
             var movie = this.GetInfo(pageUrl);
-            if (!_movieDownloadService.MovieIsMownloaded(pageUrl, movie.Manget))
+            if (!string.IsNullOrEmpty(movie.Manget) && !_movieDownloadService.MovieIsMownloaded(pageUrl, movie.Manget))
             {
                 var result = await _storageMedium.StoreAsync(movie.Manget);
                 if (result)
