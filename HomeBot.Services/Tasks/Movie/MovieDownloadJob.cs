@@ -18,6 +18,7 @@ namespace HomeBot.Services.Tasks.Movie
         }
         public Task Execute(IJobExecutionContext context)
         {
+            //为每个线程注入新的实例，以避免DbContext被销毁无法访问数据库
             using (var scope = _serviceProvider.CreateScope())
             {
                 var movieSite = scope.ServiceProvider.GetRequiredService<IMovieSite>();

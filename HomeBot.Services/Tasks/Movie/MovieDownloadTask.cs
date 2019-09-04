@@ -16,11 +16,8 @@ namespace HomeBot.Services.Tasks.Movie
             {
                 return;
             }
-            var props = new NameValueCollection
-            {
-                { "quartz.serializer.type", "binary" }
-            };
-            var factory = new StdSchedulerFactory(props);
+
+            var factory = new StdSchedulerFactory();
             scheduler = await factory.GetScheduler();
             scheduler.JobFactory = new MovieDownloadJobFactory(_serviceProvider);
 
@@ -35,9 +32,9 @@ namespace HomeBot.Services.Tasks.Movie
                 .WithSimpleSchedule(x => x
                     .WithIntervalInHours(24)
                     .RepeatForever())
-            .Build();
+                .Build();
 
-          await scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
     }
 }
