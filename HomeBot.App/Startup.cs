@@ -43,7 +43,7 @@ namespace HomeBot
             });
             var connection = Configuration["sqlite"];
             //services.AddHttpClient();//httpclient常遇到tcp连接池的问题，所以选择HtmlWeb组件和RestSharp组件代替
-            services.AddSingleton<HtmlWeb, HtmlWeb>()
+            services.AddTransient<HtmlWeb, HtmlWeb>()
                 .AddDbContext<DbContext>(options => options.UseSqlite(connection))
                 //.AddTransient<DbContext>(serviceProvider=> {
                 //    var builder = new DbContextOptionsBuilder().UseSqlite(connection);
@@ -55,12 +55,14 @@ namespace HomeBot
                 .AddTransient<IMovieDownloadService, MovieDownloadService>()
                 .AddTransient<MovieDownloadJob, MovieDownloadJob>()
                 .AddTransient<IMovieDownloadJobFactory, MovieDownloadJobFactory>()
+                .AddTransient<ILogService, LogService>()
                 ;
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public  void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -78,13 +80,14 @@ namespace HomeBot
             app.UseRouting();
             app.UseCookiePolicy();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.StartMovieDownload().Wait();
         }
     }
 }

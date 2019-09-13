@@ -21,22 +21,40 @@ namespace HomeBot.Services.Movies
         HtmlWeb _webClient;
         IStorageMedium _storageMedium;
         IMovieDownloadService _movieDownloadService;
+        ILogService _logService;
         public GaoqingLa(HtmlWeb webClient,
             IStorageMedium storageMedium,
-            IMovieDownloadService movieDownloadService)
+            IMovieDownloadService movieDownloadService,
+            ILogService logService)
         {
             _webClient = webClient;
             _webClient.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.42 Safari/537.36 Edg/77.0.235.17";
             _storageMedium = storageMedium;
             _movieDownloadService = movieDownloadService;
+            _logService = logService;
         }
-        public async Task BrowseAsync()
+        public async Task<int> BrowseAsync()
         {
             var urls = this.GetPageUrls();
+            int qty = 0;
             foreach (var url in urls)
             {
-                await this.DownloadAsync(url);
+                try
+                {
+                    qty += await this.DownloadAsync(url);
+                }
+                catch (Exception ex)
+                {
+                    _logService.Log(new Log
+                    {
+                        Type = LogType.Error,
+                        Info = $"下载{url}时出错：{ex.Message},{ex.InnerException?.Message}",
+                        Level = 0,
+                        DateTime = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now)
+                    });
+                }
             }
+            return qty;
         }
         private IEnumerable<string> GetPageUrls()
         {
@@ -67,7 +85,7 @@ namespace HomeBot.Services.Movies
             };
         }
 
-        private async Task DownloadAsync(string pageUrl)
+        private async Task<int> DownloadAsync(string pageUrl)
         {
             var movie = this.GetInfo(pageUrl);
             if (!string.IsNullOrEmpty(movie.Manget) && !_movieDownloadService.MovieIsMownloaded(pageUrl, movie.Manget))
@@ -76,8 +94,17 @@ namespace HomeBot.Services.Movies
                 if (result)
                 {
                     _movieDownloadService.Add(movie);
+                    _logService.Log(new Log
+                    {
+                        Type = LogType.Info,
+                        Info = $"完成《{movie.Title}》下载",
+                        Level = 0,
+                        DateTime = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now)
+                    });
+                    return 1;
                 }
             }
+            return 0;
         }
 
     }

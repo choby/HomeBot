@@ -19,21 +19,25 @@ using Quartz.Impl;
 using Quartz;
 using HomeBot.Services.Tasks.Movie;
 using Quartz.Spi;
+using HomeBot.Services.DbServices;
 
 namespace HomeBot.Controllers
 {
     public class HomeController : Controller
     {
         IServiceProvider _serviceProvider;
-        public HomeController(IServiceProvider serviceProvider)
+        ILogService _logService;
+        public HomeController(IServiceProvider serviceProvider, ILogService _ogService)
         {
             _serviceProvider = serviceProvider;
+            _logService = _ogService;
         }
 
 
         public IActionResult Index()
         {
-            MovieDownloadTask.Start(_serviceProvider);
+           // MovieDownloadTask.Start(_serviceProvider);
+            ViewBag.Logs = _logService.GetTop50Logs();
             return View();
         }
 
@@ -41,7 +45,6 @@ namespace HomeBot.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

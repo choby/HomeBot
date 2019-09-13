@@ -7,6 +7,6 @@ namespace HomeBot.Services.Movies
 {
     public interface IMovieSite
     {
-        Task BrowseAsync();
+        Task<int> BrowseAsync();
     }
 }

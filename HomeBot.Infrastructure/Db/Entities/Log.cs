@@ -9,8 +9,16 @@ namespace HomeBot.Infrastructure.Db.Entities
     public class Log : TEntity
     {
         public int Id { get; set; }
-        public int Type { get; set; }
+        public LogType Type { get; set; }
         public string Info { get; set; }
         public int Level { get; set; }
+        public string DateTime { get; set; }
+    }
+
+    public enum LogType
+    {
+        Info = 1,
+        Warning = 2,
+        Error = 3
     }
 }

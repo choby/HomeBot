@@ -17,4 +17,7 @@
     <ProjectReference Include="..\HomeBot.Infrastructure\HomeBot.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Tasks\Movie\MovieDownloadQuartzExtensions.cs" />
+  </ItemGroup>
 </Project>
