@@ -1,8 +1,8 @@
 {
   "nas": {
-    "url": "https://bt.vlinli.cn",
-    "user": "choby",
-    "password": "a135246A"
+    "url": "https://demo.download.com",
+    "user": "username",
+    "password": "password"
   },
   "sqlite": "Data Source=Db/db.db"
 }
